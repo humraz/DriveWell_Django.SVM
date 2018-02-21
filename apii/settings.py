@@ -25,7 +25,7 @@ SECRET_KEY = 'jdyjl2$@s#iijr@89^m$$a%+d6@j7l^2aexa66961sa%6pr2tv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.3', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -52,11 +52,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'apii.urls'
+PROJECT_DIR = os.path.dirname(__file__)
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_DIR, 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,4 +120,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/templates/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'templates')]
+

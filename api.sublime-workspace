@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"HTT",
+				"HTTP_400_BAD_REQUEST"
+			],
+			[
+				"HTTP",
+				"HTTP_201_CREATED"
+			],
+			[
+				"Snipp",
+				"SnippetSerializer"
+			],
+			[
+				"HT",
+				"Http404"
+			],
+			[
+				"h",
+				"HTTP_201_CREATED"
+			],
+			[
+				"Snip",
+				"SnippetSerializer"
+			],
+			[
 				"f",
 				"format"
 			],
@@ -28,23 +52,6 @@
 	"buffers":
 	[
 		{
-			"file": "apii/settings.py",
-			"settings":
-			{
-				"buffer_size": 3173,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "snipetss/apps.py",
-			"settings":
-			{
-				"buffer_size": 132,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "snipetss/models.py",
 			"settings":
 			{
@@ -54,10 +61,13 @@
 			}
 		},
 		{
+			"contents": "from django.shortcuts import render\n\n# Create your views here.\nfrom rest_framework import status\nfrom django.http import HttpResponse\nfrom django.views.decorators.csrf import csrf_exempt\nfrom rest_framework.renderers import JSONRenderer\nfrom rest_framework.parsers import JSONParser\nfrom rest_framework.response import Response\nfrom snipetss.models import Snippet\nfrom rest_framework.decorators import api_view\nfrom snipetss.serializers import SnippetSerializer\nfrom rest_framework.views import APIView\n\nclass SnippetList(APIView):\n    \"\"\"\n    List all snippets, or create a new snippet.\n    \"\"\"\n    def get(self, request, format=None):\n        snippets = Snippet.objects.all()\n        serializer = SnippetSerializer(snippets, many=True)\n        return Response(serializer.data)\n\n    def post(self, request, format=None):\n        serializer = SnippetSerializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            return Response(serializer.data, status=status.HTTP_201_CREATED)\n        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)\n\n\n\ndef \n\n\nclass SnippetDetail(APIView):\n    \"\"\"\n    Retrieve, update or delete a snippet instance.\n    \"\"\"\n    def get_object(self, pk):\n        try:\n            return Snippet.objects.get(pk=pk)\n        except Snippet.DoesNotExist:\n            raise Http404\n\n    def get(self, request, pk, format=None):\n        snippet = self.get_object(pk)\n        serializer = SnippetSerializer(snippet)\n        return Response(serializer.data)\n\n    def put(self, request, pk, format=None):\n        snippet = self.get_object(pk)\n        serializer = SnippetSerializer(snippet, data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            return Response(serializer.data)\n        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)\n\n    def delete(self, request, pk, format=None):\n        snippet = self.get_object(pk)\n        snippet.delete()\n        return Response(status=status.HTTP_204_NO_CONTENT)",
 			"file": "snipetss/views.py",
+			"file_size": 2037,
+			"file_write_time": 131353239941637542,
 			"settings":
 			{
-				"buffer_size": 2035,
+				"buffer_size": 2041,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -73,10 +83,21 @@
 			}
 		},
 		{
+			"contents": "\"\"\"apii URL Configuration\n\nThe `urlpatterns` list routes URLs to views. For more information please see:\n    https://docs.djangoproject.com/en/1.10/topics/http/urls/\nExamples:\nFunction views\n    1. Add an import:  from my_app import views\n    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')\nClass-based views\n    1. Add an import:  from other_app.views import Home\n    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')\nIncluding another URLconf\n    1. Import the include() function: from django.conf.urls import url, include\n    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))\n\"\"\"\nfrom django.conf.urls import url\nfrom django.contrib import admin\nfrom snipetss import views\nfrom rest_framework.urlpatterns import format_suffix_patterns\n\nurlpatterns = [\n    url(r'^admin/', admin.site.urls),\n    url(r'^snippets/$', views.SnippetList.as_view()),\n    url(r'^snippets/(?P<pk>[0-9]+)/$', views.SnippetDetail),\n]\nurlpatterns = format_suffix_patterns(urlpatterns)",
 			"file": "apii/urls.py",
+			"file_size": 1022,
+			"file_write_time": 131353241206908853,
 			"settings":
 			{
 				"buffer_size": 1014,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apii/settings.py",
+			"settings":
+			{
+				"buffer_size": 3150,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -130,6 +151,8 @@
 	],
 	"file_history":
 	[
+		"/home/humraz/apii/snipetss/apps.py",
+		"/home/humraz/apii/apii/settings.py",
 		"/home/humraz/trydjango18/src/templates/home.html",
 		"/home/humraz/trydjango18/src/newsletter/templates/home.html",
 		"/home/humraz/trydjango18/src/trydjango18/settings.py",
@@ -168,69 +191,11 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "apii/settings.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3173,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								857,
-								857
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 135.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "snipetss/apps.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 132,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								97,
-								97
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "snipetss/models.py",
 					"semi_transient": false,
 					"settings":
@@ -254,39 +219,41 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 1,
 					"file": "snipetss/views.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2035,
+						"buffer_size": 2041,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1123,
-								1123
+								1107,
+								1107
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 45.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 2,
 					"file": "snipetss/serializers.py",
 					"semi_transient": false,
 					"settings":
@@ -315,7 +282,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 3,
 					"file": "apii/urls.py",
 					"semi_transient": false,
 					"settings":
@@ -333,17 +300,49 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 4,
+					"file": "apii/settings.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								834,
+								834
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "snipetss/admin.py",
 					"semi_transient": false,
 					"settings":
@@ -355,8 +354,8 @@
 						"selection":
 						[
 							[
-								307,
-								307
+								100,
+								100
 							]
 						],
 						"settings":
@@ -367,7 +366,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]

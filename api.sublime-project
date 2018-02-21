@@ -2,7 +2,13 @@
 	"folders":
 	[
 		{
-			"path": "."
+			"path": "/home/humraz/adminint"
+		},
+		{
+			"path": "/home/humraz/my_proj"
+		},
+		{
+			"path": "/home/humraz/Desktop/apii2"
 		}
 	]
 }

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+						<table id="report_table" class="data_table">
+							<thead>
+								<tr>
+									<th><center>Driver names</center></th>
+									
+								</tr>
+							</thead>
+						
+
+                           {% for p in posts %}
+								<tr>
+ 									
+									<td><a href="/driver/{{p.drivername}}"><center>{{p.drivername}}</center></a></td>
+									
+									
+								</tr>
+                        {% endfor %}
+							
+
+ 									
+						</table>
+
+{% endblock %}		

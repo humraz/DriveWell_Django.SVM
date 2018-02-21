@@ -1,0 +1,97 @@
+<header>
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css" />
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+		<script
+					  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+					  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+					  crossorigin="anonymous"></script>		
+
+		<div id="header" >
+			<div align="center">
+				<span style="font-size:30">DriveWell</span>
+				
+			</div>
+			<div class="topnav" id="myTopnav">
+
+				<!--a href="#">Dashboard</a>
+			  <a href="#">Reports</a>
+			  <a href="#">Tournaments</a>
+			  <a href="#">Fixtures</a>
+			  <a href="#">Assign Buddies</a>
+			  <a href="#">Centers</a>
+			  <a href="#">Logout</a-->
+			</div>
+		</div>
+
+
+<style>
+#header{
+	background: #649DB9;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    overflow: hidden;
+    float: right
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td .align{ 
+	align: center; 
+}
+
+.dataTables_wrapper input[type='search']{width:200px;}
+.dataTables_wrapper .ui-widget-header{background: #C1DAE6 !important;}
+.dataTables_wrapper .ui-widget-header{border:1px solid #C1DAE6 !important;}
+.dataTables_wrapper .ui-toolbar{padding: 4px;}
+#report_table_wrapper input[type="search"]{width:200px;}
+#report_table_wrapper .odd-row {background: #eee}
+
+
+</style>
+
+</header>
+
+{% block content %}{% endblock %}
+
+<footer>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/ju-1.11.4/jqc-1.11.3,dt-1.10.8/datatables.min.css"/>
+	<script type="text/javascript" src="https://cdn.datatables.net/r/ju-1.11.4/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('.data_table').DataTable( {
+	        "paging":   false,
+	        "ordering": true,
+	        /* No ordering applied by DataTables during initialisation */
+	        "order": [],
+	        "stripeClasses": [ 'odd-row', 'even-row' ]
+	    } );
+	} );
+	</script>
+</footer>

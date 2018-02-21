@@ -20,7 +20,11 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^flag/$', views.FlagList.as_view()),
+    url(r'^imageess/$', views.PhotoList.as_view()),
+    url(r'^home/$', views.post_list),
     url(r'^snippets/$', views.SnippetList.as_view()),
-    url(r'^snippets/(?P<pk>[0-9]+)/$', views.SnippetDetail),
+    url(r'^snippets/(?P<pk>[0-9]+)/$', views.SnippetDetail.as_view),
+    url(r'^driver/(?P<driver_name>[a-zA-Z]+)/$',views.ListDrivertrips,name='matches' ),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

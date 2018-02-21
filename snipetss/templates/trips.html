@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1 align="center"><b>{{driver_name}}</b></h1>
+<table id="report_table" class="data_table">
+	<thead>
+	<tr>
+		<th>Trip-id</th>
+		<th>Score</th>
+		<th>Date</th>
+	</tr>
+</thead>
+	{% for trip in drivertrips %}
+	<tr>
+		<td>{{trip.id}}</td>
+		<td>{{trip.score}}</td>
+		<td>{{trip.date}}</td>
+	</tr>
+	{% endfor %}
+
+</table>	
+
+<h1><b><center>The cummulative Score: {{cumscore}}</center></b></h1>
+{% endblock %}

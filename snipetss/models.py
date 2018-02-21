@@ -2,16 +2,26 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+class MyPhoto(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='image/%d/', null=True, max_length=255)
+
+class Flag(models.Model):
+    score = models.CharField(max_length=255)
+    
 # Create your models here.
 class Snippet(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=100, blank=True, default='')
-    code = models.TextField()
-    linenos = models.BooleanField(default=False)
+    timecreated = models.DateTimeField(auto_now_add=True)
+    drivername = models.CharField(max_length=100, blank=True, default='')
+    score = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+   
    
     class Meta:
-        ordering = ('created',)
+        ordering = ('timecreated',)
 
 
     def __unicode__(self):
-     	return self.title
+     	return self.drivername
+
+
